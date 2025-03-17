@@ -5,7 +5,7 @@ from decouple import config
 
 def client_init_json() -> Client:
     """Создание клиента для работы с Google Sheets."""
-    return service_account(filename='./app/utils/bbot-453904-68bcf372066f.json')
+    return service_account(filename='./app/utils/bbot-453904-93bab0a43877.json')
     # return service_account(filename='bbot-453904-68bcf372066f.json')
 
 def get_table_by_id(client: Client, table_url) -> list:

@@ -28,6 +28,8 @@ async def every_day_check_birthday(ctx):
                 try:
                     if day == 0 and tg_id == person.tg_id:
                         await ctx['bot'].send_message(tg_id, text=cp.birthday_person_msg)
+                    elif tg_id == person.tg_id:
+                        continue
                     else:
                         await ctx['bot'].send_message(tg_id, text=cp.get_congratulation_n_days(person, day), parse_mode=ParseMode.HTML, disable_web_page_preview=True)
                     await asyncio.sleep(0.05)
@@ -56,6 +58,6 @@ class workersettings:
     on_shutdown = shutdown
     allow_abort_jobs = True
     cron_jobs = [
-        cron(every_day_check_birthday, minute=30, hour=8),
-        cron(every_month_check_birthday, minute=0, hour=8, day=1)
+        cron(every_day_check_birthday, minute=30, hour=10),
+        cron(every_month_check_birthday, minute=0, hour=10, day=1)
     ]
