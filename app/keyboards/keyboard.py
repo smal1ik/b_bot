@@ -43,9 +43,9 @@ def generate_bnt_birthday(persons: list):
                 text=person.full_name,
                 callback_data=f"info_{person.tg_id}")
         )
-    btn.row(
-        types.InlineKeyboardButton(
-            text="В начало",
-            callback_data="back")
-    )
+    # btn.row(
+    #     types.InlineKeyboardButton(
+    #         text="В начало",
+    #         callback_data="back")
+    # )
     return btn.as_markup()

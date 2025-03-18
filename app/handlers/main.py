@@ -33,22 +33,26 @@ async def answer_message(message: types.Message, state: FSMContext, bot: Bot):
     user = await get_user(message.from_user.id)
     if not user:
         await add_user(message.from_user.id, message.from_user.first_name, message.from_user.username)
-    await message.answer(cp.start_msg, reply_markup=kb.menu_btn)
+    await message.answer(cp.start_msg)
+    # await message.answer(cp.start_msg, reply_markup=kb.menu_btn)
 
 
 @router_main.callback_query(F.data == 'back')
 async def answer_message(callback: types.CallbackQuery, state: FSMContext, bot: Bot):
-    await callback.message.answer(cp.start_msg, reply_markup=kb.menu_btn)
+    await callback.message.answer(cp.start_msg)
+    # await callback.message.answer(cp.start_msg, reply_markup=kb.menu_btn)
 
 
 @router_main.callback_query(F.data == 'here')
 async def answer_message(callback: types.CallbackQuery, state: FSMContext, bot: Bot):
-    await callback.message.answer(cp.info_msg, reply_markup=kb.menu_btn)
+    await callback.message.answer(cp.info_msg)
+    # await callback.message.answer(cp.info_msg, reply_markup=kb.menu_btn)
 
 
 @router_main.callback_query(F.data == 'offer')
 async def answer_message(callback: types.CallbackQuery, state: FSMContext, bot: Bot):
-    await callback.message.answer(cp.offer_msg, reply_markup=kb.menu_btn)
+    await callback.message.answer(cp.offer_msg)
+    # await callback.message.answer(cp.offer_msg, reply_markup=kb.menu_btn)
 
 
 @router_main.callback_query(F.data == 'who_today')
@@ -62,4 +66,5 @@ async def answer_message(callback: types.CallbackQuery, state: FSMContext, bot: 
 async def answer_message(callback: types.CallbackQuery, state: FSMContext, bot: Bot):
     _, tg_id = callback.data.split('_')
     person = await get_person(tg_id)
-    await callback.message.answer(cp.get_congratulation(person), reply_markup=kb.back_btn, parse_mode=ParseMode.HTML, disable_web_page_preview=True)
+    # await callback.message.answer(cp.get_congratulation(person), reply_markup=kb.back_btn, parse_mode=ParseMode.HTML, disable_web_page_preview=True)
+    await callback.message.answer(cp.get_congratulation(person), parse_mode=ParseMode.HTML, disable_web_page_preview=True)
