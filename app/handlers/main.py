@@ -41,17 +41,17 @@ async def answer_message(callback: types.CallbackQuery, state: FSMContext, bot: 
     await callback.message.answer(cp.start_msg, reply_markup=kb.menu_btn)
 
 
-@router_main.callback_query(F.data == 'here')
+@router_main.message(Command('about'))
 async def answer_message(callback: types.CallbackQuery, state: FSMContext, bot: Bot):
     await callback.message.answer(cp.info_msg, reply_markup=kb.menu_btn)
 
 
-@router_main.callback_query(F.data == 'offer')
+@router_main.message(Command('suggestion'))
 async def answer_message(callback: types.CallbackQuery, state: FSMContext, bot: Bot):
     await callback.message.answer(cp.offer_msg, reply_markup=kb.menu_btn)
 
 
-@router_main.callback_query(F.data == 'who_today')
+@router_main.message(Command('bdays'))
 async def answer_message(callback: types.CallbackQuery, state: FSMContext, bot: Bot):
     persons = await get_now_month_birthdays()
     btn = kb.generate_bnt_birthday(persons)
