@@ -44,22 +44,22 @@ async def answer_message(callback: types.CallbackQuery, state: FSMContext, bot: 
 
 
 @router_main.message(Command('about'))
-async def answer_message(callback: types.CallbackQuery, state: FSMContext, bot: Bot):
-    await callback.message.answer(cp.info_msg)
+async def answer_message(message: types.Message, state: FSMContext, bot: Bot):
+    await message.answer(cp.info_msg)
     # await callback.message.answer(cp.info_msg, reply_markup=kb.menu_btn)
 
 
 @router_main.message(Command('suggestion'))
-async def answer_message(callback: types.CallbackQuery, state: FSMContext, bot: Bot):
-    await callback.message.answer(cp.offer_msg)
+async def answer_message(message: types.Message, state: FSMContext, bot: Bot):
+    await message.answer(cp.offer_msg)
     # await callback.message.answer(cp.offer_msg, reply_markup=kb.menu_btn)
 
 
 @router_main.message(Command('bdays'))
-async def answer_message(callback: types.CallbackQuery, state: FSMContext, bot: Bot):
+async def answer_message(message: types.Message, state: FSMContext, bot: Bot):
     persons = await get_now_month_birthdays()
     btn = kb.generate_bnt_birthday(persons)
-    await callback.message.answer(cp.birthday_msg, reply_markup=btn)
+    await message.answer(cp.birthday_msg, reply_markup=btn)
 
 
 @router_main.callback_query(F.data.contains('info'))
